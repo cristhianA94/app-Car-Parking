@@ -8,23 +8,28 @@ import { map, shareReplay } from "rxjs/operators";
   templateUrl: "./nav.component.html",
   styles: [
     `
-      .sidenav-container {
-        height: 100%;
-      }
+    .sidenav-container {
+      height: 100%;
+    }
 
-      .sidenav {
-        width: 200px;
-      }
+    .sidenav {
+      width: 200px;
+    }
 
-      .sidenav .mat-toolbar {
-        background: inherit;
-      }
+    .sidenav .mat-toolbar {
+      background: inherit;
+    }
 
-      .mat-toolbar.mat-primary {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-      }
+    .mat-toolbar.mat-primary {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    
+    .example-button-row button,
+    .example-button-row a {
+      margin-right: 8px;
+    }
     `
   ]
 })
