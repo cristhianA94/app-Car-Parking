@@ -6,33 +6,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonaServiceImp implements IEmpresaDao{
+public class EmpresaServiceImp implements IEmpresaDao{
     @Autowired
     private EmpresaInterface repositorio;
     
     @Override
-    public List<Empresa> listar() {
+    public List<EmpresaDTO> listar() {
         return repositorio.findAll();
     }
 
     @Override
-    public Empresa listarId(int id) {
+    public EmpresaDTO listarId(int id) {
         return repositorio.findOne(id);
     }
 
     @Override
-    public Empresa add(Empresa p) {
+    public EmpresaDTO add(EmpresaDTO p) {
         return repositorio.save(p);
     }
 
     @Override
-    public Empresa edit(Empresa p) {
+    public EmpresaDTO edit(EmpresaDTO p) {
         return repositorio.save(p);
     }
 
     @Override
-    public Empresa delete(int id) {
-        Empresa p=repositorio.findOne(id);
+    public EmpresaDTO delete(int id) {
+        EmpresaDTO p=repositorio.findOne(id);
         if(p!=null){
             repositorio.delete(p);
         }

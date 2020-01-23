@@ -22,24 +22,24 @@ public class Controlador {
     IEmpresaDao service;
     
     @GetMapping
-    public List<Empresa>listar(){
+    public List<EmpresaDTO>listar(){
         return service.listar();
     }
     @PostMapping
-    public Empresa agregar(@RequestBody Empresa p){
+    public EmpresaDTO agregar(@RequestBody EmpresaDTO p){
         return service.add(p);
     }
     @GetMapping(path = {"/{id}"})
-    public Empresa listarId(@PathVariable("id")int id){
+    public EmpresaDTO listarId(@PathVariable("id")int id){
         return service.listarId(id);
     }
     @PutMapping(path = {"/{id}"})
-    public Empresa editar(@RequestBody Empresa p,@PathVariable("id") int id){
+    public EmpresaDTO editar(@RequestBody EmpresaDTO p,@PathVariable("id") int id){
         p.setId(id);
         return service.edit(p);
     }
     @DeleteMapping(path = {"/{id}"})
-    public Empresa delete(@PathVariable("id") int  id){
+    public EmpresaDTO delete(@PathVariable("id") int  id){
         return service.delete(id);
     }
 }
