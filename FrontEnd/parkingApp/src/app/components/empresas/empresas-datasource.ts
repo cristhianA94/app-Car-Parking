@@ -1,63 +1,42 @@
+import { Observable, of as observableOf, merge } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
-export interface EmpresasItem {
-  name: string;
-  id: number;
-}
+import { Empresa } from './../../models/Empresa';
+import { EmpresaService } from './../../shared/services/empresa.service';
+ 
+export class EmpresasDataSource extends DataSource<Empresa> {
+  data: Empresa[] = [];
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: EmpresasItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
-];
-
-/**
- * Data source for the Empresas view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class EmpresasDataSource extends DataSource<EmpresasItem> {
-  data: EmpresasItem[] = EXAMPLE_DATA;
-  paginator: MatPaginator;
-  sort: MatSort;
-
-  constructor() {
+  constructor(
+    private paginator: MatPaginator,
+    private sort: MatSort,
+    private empresaService: EmpresaService
+    ) {
     super();
   }
 
   /**
-   * Connect this data source to the table. The table will only update when
-   * the returned stream emits new items.
+   * Conectar esta fuente de datos a la tabla.
+   * La tabla sólo se actualizará cuando la secuencia devuelta emita nuevos elementos.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<EmpresasItem[]> {
-    // Combine everything that affects the rendered data into one update
-    // stream for the data-table to consume.
+  connect(): Observable<Empresa[]> {
+    // Obtiene los datos de las empresas
+    const empresas: Observable<Empresa[]> = this.empresaService.getEmpresas()
+    .pipe(map( data => {
+      this.data = data;
+      this.paginator.length = this.data.length;
+      return data;
+    }) )
+
+    //Combina todo lo que afecta a los datos renderizados en un flujo
+    // de actualización para que la tabla de datos se consuma.
     const dataMutations = [
-      observableOf(this.data),
+      empresas,
       this.paginator.page,
       this.sort.sortChange
     ];
@@ -77,7 +56,7 @@ export class EmpresasDataSource extends DataSource<EmpresasItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: EmpresasItem[]) {
+  private getPagedData(data: Empresa[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -86,7 +65,7 @@ export class EmpresasDataSource extends DataSource<EmpresasItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: EmpresasItem[]) {
+  private getSortedData(data: Empresa[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -94,8 +73,8 @@ export class EmpresasDataSource extends DataSource<EmpresasItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'name': return compare(a.nombre, b.nombre, isAsc);
         default: return 0;
       }
     });

@@ -12,16 +12,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmpresaService {
-  url: 'http://localhost:8080/parkingapp/empresa';
+  url: 'http://localhost:8080/personas';
 
   constructor(
-    protected http: HttpClient
+    private http: HttpClient
   ) {
 
   }
 
   getEmpresas(): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>(this.url);
+    return this.http.get<Empresa[]>('http://localhost:8080/personas');
   }
 
 }
