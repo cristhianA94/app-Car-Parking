@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "usuario")
-public class Usuario {
+public class UsuarioDTO {
    
     @Id
     @Column

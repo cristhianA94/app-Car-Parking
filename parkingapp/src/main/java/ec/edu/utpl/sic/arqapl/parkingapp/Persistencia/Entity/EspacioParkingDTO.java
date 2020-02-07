@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "espacioparkin")
-public class EspacionParking {
+public class EspacioParkingDTO {
    @Id
     @Column
     private int id;

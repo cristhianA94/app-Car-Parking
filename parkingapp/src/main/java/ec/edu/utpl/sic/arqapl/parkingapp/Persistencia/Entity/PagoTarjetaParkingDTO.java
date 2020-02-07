@@ -16,18 +16,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "")
-public class PagoTarCredito {
-    @Id
+public class PagoTarjetaParkingDTO {
+     @Id
     @Column
-    private int idreserva;
+    private int idPago;
 
-    public int getIdreserva() {
-        return idreserva;
+    public int getIdPago() {
+        return idPago;
     }
 
-    public void setIdreserva(int idreserva) {
-        this.idreserva = idreserva;
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
     }
-    
-    
 }

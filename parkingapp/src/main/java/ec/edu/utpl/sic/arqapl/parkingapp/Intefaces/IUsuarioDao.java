@@ -6,15 +6,15 @@
 package ec.edu.utpl.sic.arqapl.parkingapp.Intefaces;
 import java.util.List;
 
-import ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Entity.Usuario;
+import ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Entity.UsuarioDTO;
 /**
  *
  * @author ESCRITORIO
  */
 public interface IUsuarioDao {
-    List<Usuario>listar();
-    Usuario listarId(int id);
-    Usuario add(Usuario u);
-    Usuario edit(Usuario u);
-    Usuario delete(int id);
+    List<UsuarioDTO>listar();
+    UsuarioDTO listarId(int id);
+    UsuarioDTO add(UsuarioDTO u);
+    UsuarioDTO edit(UsuarioDTO u);
+    UsuarioDTO delete(int id);
 }

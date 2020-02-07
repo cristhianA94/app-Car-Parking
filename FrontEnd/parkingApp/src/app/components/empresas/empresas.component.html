@@ -12,10 +12,6 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
                 <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
             </ng-container>
-            <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
-            </ng-container>
             <ng-container matColumnDef="direccion">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Direccion</th>
                 <td mat-cell *matCellDef="let row">{{row.direccion}}</td>
@@ -32,13 +28,17 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
                 <td mat-cell *matCellDef="let row">{{row.num_espacios}}</td>
             </ng-container>
-            <ng-container matColumnDef="nombre">
+            <ng-container matColumnDef="fraccion">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+                <td mat-cell *matCellDef="let row">{{row.fraccion}}</td>
             </ng-container>
-            <ng-container matColumnDef="nombre">
+            <ng-container matColumnDef="precio">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-                <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+                <td mat-cell *matCellDef="let row">{{row.precio}}</td>
+            </ng-container>
+            <ng-container matColumnDef="descuento">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">{{row.descuento}}</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.utpl.sic.arqapl.parkingapp.Core.Entity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author ESCRITORIO
  */
 public class Empresa {
-    
-    
-    
+
     private int id;
     private String nombre;
     private String direccion;
@@ -22,6 +18,10 @@ public class Empresa {
     private String fraccion;
     private String precio;
     private String descuento;
+    public List<ServiciosAdicionales> lstServiciosA = new ArrayList<>();
+
+    public Empresa() {
+    }
 
     public Empresa(int id, String nombre, String direccion, String latitud, String longitud, String num_espacios, String fraccion, String precio, String descuento) {
         this.id = id;
@@ -35,7 +35,17 @@ public class Empresa {
         this.descuento = descuento;
     }
 
-    public Empresa() {
+    public Empresa(int id, String nombre, String direccion, String latitud, String longitud, String num_espacios, String fraccion, String precio, String descuento, List<ServiciosAdicionales> lstServicios) {
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.num_espacios = num_espacios;
+        this.fraccion = fraccion;
+        this.precio = precio;
+        this.descuento = descuento;
+        this.lstServiciosA = lstServicios;
     }
 
     public int getId() {
@@ -109,7 +119,18 @@ public class Empresa {
     public void setDescuento(String descuento) {
         this.descuento = descuento;
     }
-    
-    
-    
+
+    public List<ServiciosAdicionales> getLstServiciosA() {
+        return lstServiciosA;
+    }
+
+    public void setLstServiciosA(List<ServiciosAdicionales> lstServiciosA) {
+        this.lstServiciosA = lstServiciosA;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa{" + "id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", latitud=" + latitud + ", longitud=" + longitud + ", num_espacios=" + num_espacios + ", fraccion=" + fraccion + ", precio=" + precio + ", descuento=" + descuento + ", lstServiciosA=" + lstServiciosA + '}';
+    }
+
 }

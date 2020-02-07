@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "")
-public class PagoEfectivo {
+public class PagoEfectivoDTO {
     
     @Id
     @Column

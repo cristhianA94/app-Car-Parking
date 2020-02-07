@@ -8,7 +8,7 @@ package ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.DAOImpl;
 
 
 import ec.edu.utpl.sic.arqapl.parkingapp.Intefaces.IUsuarioDao;
-import ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Entity.Usuario;
+import ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Entity.UsuarioDTO;
 import ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.InterfaceSpring.UsuarioInterface;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,27 +22,27 @@ public class UsuarioService_DAOImpl implements  IUsuarioDao{
     private UsuarioInterface repositoR;
 
     @Override
-    public List<Usuario> listar() {
+    public List<UsuarioDTO> listar() {
         return repositoR.findAll();
     }
 
     @Override
-    public Usuario listarId(int id) {
+    public UsuarioDTO listarId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Usuario add(Usuario u) {
+    public UsuarioDTO add(UsuarioDTO u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Usuario edit(Usuario u) {
+    public UsuarioDTO edit(UsuarioDTO u) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Usuario delete(int id) {
+    public UsuarioDTO delete(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
   

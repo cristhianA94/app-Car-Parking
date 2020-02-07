@@ -5,7 +5,7 @@
  */
 package ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.InterfaceSpring;
 
-import ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Entity.Usuario;
+import ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Entity.UsuarioDTO;
 import java.util.List;
 import org.springframework.data.repository.Repository;
 
@@ -13,10 +13,10 @@ import org.springframework.data.repository.Repository;
  *
  * @author ESCRITORIO
  */
-public interface UsuarioInterface extends Repository<Usuario, Integer>{
-    List<Usuario>findAll();
-    Usuario findOne(int id);
-    Usuario save(Usuario p);
-    void delete(Usuario p);
+public interface UsuarioInterface extends Repository<UsuarioDTO, Integer>{
+    List<UsuarioDTO>findAll();
+    UsuarioDTO findOne(int id);
+    UsuarioDTO save(UsuarioDTO p);
+    void delete(UsuarioDTO p);
     
 }
