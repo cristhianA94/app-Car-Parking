@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmpresaService {
-  url: 'http://localhost:8080/personas';
+  url: 'http://localhost:8080/empresa';
 
   constructor(
     private http: HttpClient
@@ -21,7 +21,7 @@ export class EmpresaService {
   }
 
   getEmpresas(): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>('http://localhost:8080/personas');
+    return this.http.get<Empresa[]>('http://localhost:8080/empresa');
   }
 
 }

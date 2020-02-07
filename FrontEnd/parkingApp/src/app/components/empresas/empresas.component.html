@@ -12,12 +12,40 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
                 <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
             </ng-container>
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+            </ng-container>
+            <ng-container matColumnDef="direccion">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Direccion</th>
+                <td mat-cell *matCellDef="let row">{{row.direccion}}</td>
+            </ng-container>
+            <ng-container matColumnDef="latidud">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">{{row.latidud}}</td>
+            </ng-container>
+            <ng-container matColumnDef="longitud">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">{{row.longitud}}</td>
+            </ng-container>
+            <ng-container matColumnDef="num_espacios">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">{{row.num_espacios}}</td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 15, 20, 25]">
+        <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 15, 20, 25]">
         </mat-paginator>
     </div>
 </mat-card>

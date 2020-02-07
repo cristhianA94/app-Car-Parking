@@ -1,9 +1,9 @@
-import { Empresa } from './../../models/Empresa';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 
+import { Empresa } from '../../entities/Empresa';
 import { EmpresasDataSource } from './empresas-datasource';
 import { EmpresaService } from '../..//shared/services/empresa.service';
 
@@ -32,8 +32,8 @@ export class EmpresasComponent implements AfterViewInit, OnInit {
   dataSource: EmpresasDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  //displayedColumns = ['id', 'nombre', 'direccion', 'latitud', 'longitud', 'num_espacios', 'fraccion', 'precio', 'descuento'];
-  displayedColumns = ['id', 'nombre'];
+  displayedColumns = ['id', 'nombre', 'direccion', 'latitud', 'longitud', 'num_espacios', 'fraccion', 'precio', 'descuento'];
+  //displayedColumns = ['id', 'nombre'];
 
   ngOnInit() {
     this.dataSource = new EmpresasDataSource(this.paginator, this.sort, this.empresaService);
