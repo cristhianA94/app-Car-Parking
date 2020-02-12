@@ -36,13 +36,16 @@ export class EmpresasComponent implements AfterViewInit, OnInit {
   //displayedColumns = ['id', 'nombre'];
 
   ngOnInit() {
+    
     this.dataSource = new EmpresasDataSource(this.paginator, this.sort, this.empresaService);
+    console.log(this.empresas);
+    
 
   }
 
   ngAfterViewInit() {
-    //this.dataSource.sort = this.sort;
-    //this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
 }

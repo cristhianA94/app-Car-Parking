@@ -5,16 +5,16 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
-import { Empresa } from './../../models/Empresa';
+import { Empresa } from './../../entities/Empresa';
 import { EmpresaService } from './../../shared/services/empresa.service';
  
 export class EmpresasDataSource extends DataSource<Empresa> {
-  data: Empresa[] = [];
+  dataEmpresa: Empresa[] = [];
 
   constructor(
-    private paginator: MatPaginator,
-    private sort: MatSort,
-    private empresaService: EmpresaService
+    public paginator: MatPaginator,
+    public sort: MatSort,
+    public empresaService: EmpresaService
     ) {
     super();
   }
@@ -28,10 +28,10 @@ export class EmpresasDataSource extends DataSource<Empresa> {
     // Obtiene los datos de las empresas
     const empresas: Observable<Empresa[]> = this.empresaService.getEmpresas()
     .pipe(map( data => {
-      this.data = data;
-      this.paginator.length = this.data.length;
+      this.dataEmpresa = data;
+      this.paginator.length = this.dataEmpresa.length;
       return data;
-    }) )
+      }));
 
     //Combina todo lo que afecta a los datos renderizados en un flujo
     // de actualización para que la tabla de datos se consuma.
@@ -42,7 +42,7 @@ export class EmpresasDataSource extends DataSource<Empresa> {
     ];
 
     return merge(...dataMutations).pipe(map(() => {
-      return this.getPagedData(this.getSortedData([...this.data]));
+      return this.getPagedData(this.getSortedData([...this.dataEmpresa]));
     }));
   }
 
@@ -74,7 +74,7 @@ export class EmpresasDataSource extends DataSource<Empresa> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'id': return compare(+a.id, +b.id, isAsc);
-        case 'name': return compare(a.nombre, b.nombre, isAsc);
+        case 'nombre': return compare(a.nombre, b.nombre, isAsc);
         default: return 0;
       }
     });

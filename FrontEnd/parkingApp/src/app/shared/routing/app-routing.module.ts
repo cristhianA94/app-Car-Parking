@@ -5,6 +5,7 @@ import { DashboardComponent } from 'src/app/components/dashboard/dashboard.compo
 import { HomeComponent } from './../../components/home/home.component';
 import { RegisterComponent } from './../../components/register/register.component';
 import { LogInComponent } from './../../components/log-in/log-in.component';
+import { TableComponent } from './../../components/table/table.component';
 import { EmpresasComponent } from 'src/app/components/empresas/empresas.component';
 
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'business', component: EmpresasComponent },
+  { path: 'tabla', component: TableComponent },
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
 ];

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // Modelo
-import { Empresa } from './../../models/Empresa';
+import { Empresa } from './../../entities/Empresa';
 
 
 import { Observable } from 'rxjs';
@@ -21,7 +21,7 @@ export class EmpresaService {
   }
 
   getEmpresas(): Observable<Empresa[]> {
-    return this.http.get<Empresa[]>('http://localhost:8080/empresa');
+    return this.http.get<Empresa[]>('http://localhost:8080/parqueaT/empresa');
   }
 
 }

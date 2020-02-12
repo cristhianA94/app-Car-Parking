@@ -21,6 +21,7 @@ import { MapParkingsComponent } from './components/map-parkings/map-parkings.com
 import { RegisterComponent } from './components/register/register.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
+import { TableComponent } from './components/table/table.component';
 
 // Services
 import { EmpresaService } from './shared/services/empresa.service';
@@ -36,7 +37,8 @@ import { EmpresaService } from './shared/services/empresa.service';
     LogInComponent,
     RegisterComponent,
     MapParkingsComponent,
-    EmpresasComponent
+    EmpresasComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

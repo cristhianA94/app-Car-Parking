@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="parkingapp_ParqueaT" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.Pago</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.Tarjeta</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.ReservaDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.UsuarioDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.EspacioParkingDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.Tarjeta_1</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.Pago_1</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.ServiciosAdicionalesDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistencia.Test.EmpresaDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.PagoDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.ReservaDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.ServiciosadicionalesDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.TarjetaDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.EspacioparkinDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.EspaciosDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.ServiciosAdicionalesDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.UsuarioDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.EmpresaDTO</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.Reserva</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.Usuario</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.Tarjeta</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.ServiciosAdicionales</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.Pago</class>
+    <class>ec.edu.utpl.sic.arqapl.parkingapp.Persistence.Entities.Espacios</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/parqueaderoapp?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>
