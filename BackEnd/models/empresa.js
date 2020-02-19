@@ -6,7 +6,6 @@ module.exports = (sequelize, DataTypes) => {
         latitud: DataTypes.DOUBLE,
         longitud: DataTypes.DOUBLE,
         fraccion: DataTypes.STRING,
-        direccion: DataTypes.STRING,
         num_espacios: DataTypes.INTEGER,
         precio: DataTypes.DOUBLE,
         descuento: DataTypes.DOUBLE,
@@ -14,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false
     });
 
-    empresa.associate = function (models) {
+    empresa.associate = function(models) {
         models.empresa.hasMany(models.servicios_adicionales);
         models.empresa.hasMany(models.espacios);
         models.empresa.hasMany(models.reservas);
