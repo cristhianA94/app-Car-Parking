@@ -1,13 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     var reservas = sequelize.define('reservas', {
-        horaInicio: DataTypes.DATE,
-        horaSalida: DataTypes.DATE,
+        horaInicio: DataTypes.TIME,
+        horaSalida: DataTypes.TIME,
     }, {
         timestamps: false
     });
 
-    reservas.associate = function (models) {
+    reservas.associate = function(models) {
         models.reservas.belongsTo(models.empresa, {
             onDelete: "CASCADE",
             foreignKey: {

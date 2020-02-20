@@ -24,7 +24,13 @@ import { EmpresasComponent } from './components/empresas/empresas.component';
 import { TableComponent } from './components/table/table.component';
 
 // Services
-import { EmpresaService } from './shared/services/empresa.service';
+import { EmpresaService } from './shared/controllers/empresa.service';
+import { TarjetasService } from './shared/controllers/tarjetas.service';
+import { UsuariosService } from './shared/controllers/usuarios.service';
+import { Servicios_AdicionalesService } from './shared/controllers/servicios_adicionales.service';
+import { PagosService } from './shared/controllers/pagos.service';
+import { ReservasService } from './shared/controllers/reservas.service';
+import { EspaciosService } from './shared/controllers/espacios.service';
 
 
 
@@ -51,7 +57,14 @@ import { EmpresaService } from './shared/services/empresa.service';
     MatPasswordStrengthModule.forRoot(),
   ],
   providers: [
-    EmpresaService
+    EmpresaService,
+    EspaciosService,
+    ReservasService,
+    PagosService,
+    Servicios_AdicionalesService,
+    UsuariosService,
+    TarjetasService
+
   ],
   bootstrap: [AppComponent]
 })
