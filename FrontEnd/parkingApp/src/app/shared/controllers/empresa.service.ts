@@ -40,8 +40,6 @@ export class EmpresaService {
     });
   }
 
-
-
   registrarEmpresa(empresas: Empresa): Observable<any> {
     const params = JSON.stringify(empresas);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');

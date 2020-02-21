@@ -5,7 +5,6 @@ import { DashboardComponent } from 'src/app/components/dashboard/dashboard.compo
 import { HomeComponent } from './../../components/home/home.component';
 import { RegisterComponent } from './../../components/register/register.component';
 import { LogInComponent } from './../../components/log-in/log-in.component';
-import { TableComponent } from './../../components/table/table.component';
 import { EmpresasComponent } from 'src/app/components/empresas/empresas.component';
 import { EmpresaService } from '../controllers/empresa.service';
 
@@ -21,8 +20,7 @@ const routes: Routes = [
       data: EmpresaService
     }
   },
-  { path: 'tabla', component: TableComponent },
-  { path: 'login', component: LogInComponent },
+    { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
 ];
 
