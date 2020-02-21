@@ -1,28 +1,27 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    var reservas = sequelize.define('reservas', {
-        horaInicio: DataTypes.DATE,
-        horaSalida: DataTypes.DATE,
+    var pagos = sequelize.define('pagos', {
+        valor: DataTypes.DOUBLE,
     }, {
         timestamps: false
     });
 
-    reservas.associate = function (models) {
-        models.reservas.belongsTo(models.empresa, {
-            onDelete: "CASCADE",
-            foreignKey: {
-                allowNull: false
-            },
-            as: 'empresa'
-        });
-        models.reservas.belongsTo(models.tarjetas, {
+    pagos.associate = function (models) {
+        models.pagos.belongsTo(models.tarjetas, {
             onDelete: "CASCADE",
             foreignKey: {
                 allowNull: false
             },
             as: 'tarjeta'
         });
+        models.pagos.belongsTo(models.empresa, {
+            onDelete: "CASCADE",
+            foreignKey: {
+                allowNull: false
+            },
+            as: 'empresa'
+        });
     };
 
-    return reservas;
+    return pagos;
 };

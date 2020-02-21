@@ -1,51 +1,57 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-
-import { Empresa } from '../../entities/Empresa';
-import { EmpresasDataSource } from './empresas-datasource';
-import { EmpresaService } from '../..//shared/services/empresa.service';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
+import { EmpresaService } from 'src/app/shared/controllers/empresa.service';
+import { EmpresaFormComponent } from './empresa-form/empresa-form.component';
+import { MatDialog } from '@angular/material';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-empresas',
   templateUrl: './empresas.component.html',
-  styles: [
-    `
-    .full-width-table {
-      width: 100%;
-    }
-    mat-card{
-      height: 100%;
-    }
-    `
-  ]
+  styles: []
 })
-export class EmpresasComponent implements AfterViewInit, OnInit {
+export class EmpresasComponent implements OnInit, OnDestroy {
 
-  empresas: any = []
-  constructor(private empresaService: EmpresaService) {}
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: false }) sort: MatSort;
-  @ViewChild(MatTable, { static: false }) table: MatTable<Empresa>;
-  dataSource: EmpresasDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'nombre', 'direccion', 'latitud', 'longitud', 'num_espacios', 'fraccion', 'precio', 'descuento'];
-  //displayedColumns = ['id', 'nombre'];
+  // Private
+  private _unsubscribeAll: Subject<any>;
+  dialogRef: any;
 
-  ngOnInit() {
-    
-    this.dataSource = new EmpresasDataSource(this.paginator, this.sort, this.empresaService);
-    console.log(this.empresas);
-    
 
+  constructor(
+    private empresaService: EmpresaService,
+    private _matDialog: MatDialog
+  ) {
+
+    this._unsubscribeAll = new Subject();
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  ngOnInit(): void {
   }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from all subscriptions
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.complete();
+  }
+
+  nuevaEmpresa(): void {
+    this.dialogRef = this._matDialog.open(EmpresaFormComponent, {
+      panelClass: 'contact-form-dialog',
+      data: {
+        action: 'new'
+      }
+    });
+
+    this.dialogRef.afterClosed()
+      .subscribe((response: FormGroup) => {
+        if (!response) {
+          return;
+        }
+        // metodo para agregar
+        // this.empresaService.agregarEmpresa(response.getRawValue());
+        console.log("TCL: EmpresasComponent -> response.getRawValue()", response.getRawValue())
+      });
+  }
+
 }

@@ -6,7 +6,7 @@ var router = express.Router();
 /**
  * Obtener todas las empresas
  */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     empresaDomain.obtenerEmpresas().then(empresas => {
             res.send(empresas)
         })
@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 /**
  * Obtener empresa
  */
-router.get('/:empresa_id', function(req, res) {
+router.get('/:empresa_id', function (req, res) {
     var id = req.params.empresa_id;
     empresaDomain.obtenerEmpresa(id).then(empresa => {
             res.send(empresa)
@@ -29,7 +29,7 @@ router.get('/:empresa_id', function(req, res) {
 /**
  * Agregar empresa
  */
-router.post('/crear', function(req, res) {
+router.post('/crear', function (req, res) {
     var empresa = req.body;
     empresaDomain.agregarEmpresa(empresa).then(() => {
             res.send({
@@ -43,7 +43,7 @@ router.post('/crear', function(req, res) {
 /**
  * Eliminar empresa
  */
-router.get('/:empresa_id/eliminar', function(req, res) {
+router.get('/:empresa_id/eliminar', function (req, res) {
     var id = req.params.empresa_id;
     empresaDomain.eliminarEmpresa(id).then(() => {
             res.send({
@@ -58,7 +58,7 @@ router.get('/:empresa_id/eliminar', function(req, res) {
 /**
  * Actualizar empresa
  */
-router.put('/:empresa_id/actualizar', function(req, res) {
+router.put('/:empresa_id/actualizar', function (req, res) {
     var obj = req.body;
     var id = req.params.empresa_id;
 

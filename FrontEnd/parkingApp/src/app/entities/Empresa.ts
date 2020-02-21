@@ -1,18 +1,4 @@
 export class Empresa {
-
-  constructor(id?: number, nombre = '', direccion = '', latitud = null, longitud = null,
-    num_espacios = null, fraccion = '', precio = null, descuento = null) {
-    this.id = id;
-    this.nombre = nombre;
-    this.direccion = direccion;
-    this.latitud = latitud;
-    this.longitud = longitud;
-    this.num_espacios = num_espacios;
-    this.fraccion = fraccion;
-    this.precio = precio;
-    this.descuento = descuento;
-  }
-
   id?: number;
   nombre: string;
   direccion: string;
@@ -22,4 +8,19 @@ export class Empresa {
   fraccion: string;
   precio: number;
   descuento: number;
+
+  constructor(empresa?) {
+    {
+      empresa = empresa || {};
+      this.id = empresa.id || '';
+      this.nombre = empresa.nombre || '';
+      this.direccion = empresa.direccion || '';
+      this.latitud = empresa.latitud || '';
+      this.longitud = empresa.longitud || '';
+      this.num_espacios = empresa.num_espacios || '';
+      this.fraccion = empresa.fraccion || '';
+      this.precio = empresa.precio || '';
+      this.descuento = empresa.descuento || '';
+    }
+  }
 }

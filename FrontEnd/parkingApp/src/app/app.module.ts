@@ -31,6 +31,8 @@ import { Servicios_AdicionalesService } from './shared/controllers/servicios_adi
 import { PagosService } from './shared/controllers/pagos.service';
 import { ReservasService } from './shared/controllers/reservas.service';
 import { EspaciosService } from './shared/controllers/espacios.service';
+import { EmpresasListComponent } from './components/empresas/empresas-list/empresas-list.component';
+import { EmpresaFormComponent } from './components/empresas/empresa-form/empresa-form.component';
 
 
 
@@ -44,7 +46,9 @@ import { EspaciosService } from './shared/controllers/espacios.service';
     RegisterComponent,
     MapParkingsComponent,
     EmpresasComponent,
-    TableComponent
+    TableComponent,
+    EmpresasListComponent,
+    EmpresaFormComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,9 @@ import { EspaciosService } from './shared/controllers/espacios.service';
     Servicios_AdicionalesService,
     UsuariosService,
     TarjetasService
-
+  ],
+  entryComponents: [
+    EmpresaFormComponent
   ],
   bootstrap: [AppComponent]
 })
