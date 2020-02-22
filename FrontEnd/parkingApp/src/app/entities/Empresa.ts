@@ -5,7 +5,7 @@ export class Empresa {
   latitud: number;
   longitud: number;
   num_espacios: number;
-  fraccion: string;
+  fraccion: number;
   precio: number;
   descuento: number;
 

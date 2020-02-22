@@ -49,7 +49,7 @@ export class EmpresasComponent implements OnInit, OnDestroy {
           return;
         }
         // metodo para agregar
-        // this.empresaService.agregarEmpresa(response.getRawValue());
+        this.empresaService.registrarEmpresa(response.getRawValue()).subscribe(res => console.log(res), error => console.log(error as any));
         console.log("TCL: EmpresasComponent -> response.getRawValue()", response.getRawValue())
       });
   }

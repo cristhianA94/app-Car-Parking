@@ -7,7 +7,8 @@ module.exports = {
         // port: '8889',
         database: 'parqueaderos',
         host: '127.0.0.1',
-    },*/
+    },
+    */
     development: {
         dialect: "mysql",
         username: 'u4tivldchl3loxuv',
@@ -16,6 +17,7 @@ module.exports = {
         database: 'bc7gqelmsaqi09pjpxat',
         host: 'bc7gqelmsaqi09pjpxat-mysql.services.clever-cloud.com',
     },
+
     test: {
         dialect: "mysql",
         username: 'root',

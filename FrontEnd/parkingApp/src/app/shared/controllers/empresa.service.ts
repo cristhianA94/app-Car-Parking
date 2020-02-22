@@ -17,7 +17,7 @@ export class EmpresaService {
   public url: string;
   public empresaSeleccionada: Empresa;
   public empresas: Empresa[];
-  onEmpresasChanged: BehaviorSubject<any>;
+  public onEmpresasChanged: BehaviorSubject<any>;
 
 
   constructor(private http: HttpClient) {
@@ -44,7 +44,7 @@ export class EmpresaService {
     const params = JSON.stringify(empresas);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.post(this.url + 'empresas', params, { headers });
+    return this.http.post(this.url + 'empresas/crear', params, { headers });
   }
 
   listarEmpresas(): Promise<any> {
@@ -69,13 +69,13 @@ export class EmpresaService {
     const params = JSON.stringify(empresas);
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.put(this.url + `empresas/${empresas.id}`, params, { headers });
+    return this.http.put(this.url + `empresas/${empresas.id}/actualizar`, params, { headers });
   }
 
   eliminarEmpresa(idEmpresa: number) {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.delete(this.url + `empresas/${idEmpresa}`, { headers });
+    return this.http.delete(this.url + `empresas/${idEmpresa}/eliminar`, { headers });
   }
 
 }

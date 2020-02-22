@@ -5,7 +5,7 @@ var servicioDomain = require('../domain/servicios_adicionales');
 /**
  * Obtener todas las servicios
  */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     servicioDomain.obtenerServicios().then(servicios => {
             res.send(servicios)
         })
@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
 /**
  * Obtener servicio
  */
-router.get('/:servicio_id', function (req, res) {
+router.get('/:servicio_id', function(req, res) {
     var id = req.params.servicio_id;
     servicioDomain.obtenerServicio(id).then(servicio => {
             res.send(servicio)
@@ -28,7 +28,7 @@ router.get('/:servicio_id', function (req, res) {
 /**
  * Agregar servicio
  */
-router.post('/crear', function (req, res) {
+router.post('/crear', function(req, res) {
     var servicio = req.body;
     servicioDomain.agregarServicio(servicio).then(() => {
             res.send({
@@ -42,7 +42,7 @@ router.post('/crear', function (req, res) {
 /**
  * Eliminar servicio
  */
-router.get('/:servicio_id/eliminar', function (req, res) {
+router.delete('/:servicio_id/eliminar', function(req, res) {
     var id = req.params.servicio_id;
     servicioDomain.eliminarServicio(id).then(() => {
             res.send({
@@ -56,7 +56,7 @@ router.get('/:servicio_id/eliminar', function (req, res) {
 /**
  * Actualizar servicio
  */
-router.put('/:servicio_id/actualizar', function (req, res) {
+router.put('/:servicio_id/actualizar', function(req, res) {
     var obj = req.body;
     var id = req.params.servicio_id;
 

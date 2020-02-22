@@ -6,7 +6,7 @@ var router = express.Router();
 /**
  * Obtener todas las tarjetas
  */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     tarjetaDomain.obtenerTarjetas().then(tarjetas => {
             res.send(tarjetas)
         })
@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 /**
  * Obtener tarjeta
  */
-router.get('/:tarjeta_id', function (req, res) {
+router.get('/:tarjeta_id', function(req, res) {
     var id = req.params.tarjeta_id;
     tarjetaDomain.obtenerTarjeta(id).then(tarjeta => {
             res.send(tarjeta)
@@ -29,7 +29,7 @@ router.get('/:tarjeta_id', function (req, res) {
 /**
  * Agregar tarjeta
  */
-router.post('/crear', function (req, res) {
+router.post('/crear', function(req, res) {
     var tarjeta = req.body;
     tarjetaDomain.agregarTarjeta(tarjeta).then(() => {
             res.send({
@@ -43,7 +43,7 @@ router.post('/crear', function (req, res) {
 /**
  * Eliminar tarjeta
  */
-router.get('/:tarjeta_id/eliminar', function (req, res) {
+router.delete('/:tarjeta_id/eliminar', function(req, res) {
     var id = req.params.tarjeta_id;
     tarjetaDomain.eliminarTarjeta(id).then(() => {
             res.send({
@@ -57,7 +57,7 @@ router.get('/:tarjeta_id/eliminar', function (req, res) {
 /**
  * Actualizar tarjeta
  */
-router.put('/:tarjeta_id/actualizar', function (req, res) {
+router.put('/:tarjeta_id/actualizar', function(req, res) {
     var obj = req.body;
     var id = req.params.tarjeta_id;
 

@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Empresa } from 'src/app/entities/Empresa';
 
+import { Empresa } from 'src/app/entities/Empresa';
 
 @Component({
   selector: 'app-empresa-form',

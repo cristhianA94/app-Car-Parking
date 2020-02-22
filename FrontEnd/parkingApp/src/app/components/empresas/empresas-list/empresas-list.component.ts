@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { DataSource } from '@angular/cdk/collections';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+
 import { EmpresaService } from 'src/app/shared/controllers/empresa.service';
 import { EmpresaFormComponent } from '../empresa-form/empresa-form.component';
 
@@ -14,6 +16,7 @@ import { EmpresaFormComponent } from '../empresa-form/empresa-form.component';
 })
 export class EmpresasListComponent implements OnInit, OnDestroy {
   @ViewChild('dialogContent', { static: false })
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   dialogContent: TemplateRef<any>;
 
   empresas: any;
@@ -47,6 +50,12 @@ export class EmpresasListComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
   }
+  /* 
+    refresh() {
+      this.empresaService.lis.subscribe((data: PeriodicElement[]) => {
+        this.dataSource.data = data;
+      });
+    } */
 
 
   editarEmpresa(empresa): void {
@@ -68,12 +77,14 @@ export class EmpresasListComponent implements OnInit, OnDestroy {
         switch (actionType) {
           case 'save':
             // metodo para actualizar
-            // this.empresaService.actualizarEmpresa(formData.getRawValue());
-            console.log("TCL: EmpresasListComponent -> formData.getRawValue()", formData.getRawValue())
+            this.empresaService.actualizarEmpresa(formData.getRawValue()).subscribe(res => console.log(res), error => console.log(error as any));
+            //console.log("TCL: EmpresasListComponent -> formData.getRawValue()", formData.getRawValue())
             break;
           case 'delete':
             // metodo para borrar
-            console.log('eliminar');
+            if (confirm("¿Estás seguro que deseas eliminarlo?")) {
+              this.empresaService.eliminarEmpresa(formData.getRawValue().id).subscribe(res => console.log(res), error => console.log(error as any));
+            }
             break;
         }
       });

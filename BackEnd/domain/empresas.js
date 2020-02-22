@@ -1,8 +1,9 @@
-var models = require('../models');
+var models = require("../models");
 
-exports.agregarEmpresa = function (emp) {
-    return new Promise(function (resolve, reject) {
-        models.empresa.create({
+exports.agregarEmpresa = function(emp) {
+    return new Promise(function(resolve, reject) {
+        models.empresa
+            .create({
                 nombre: emp.nombre,
                 direccion: emp.direccion,
                 latitud: emp.latitud,
@@ -10,62 +11,72 @@ exports.agregarEmpresa = function (emp) {
                 fraccion: emp.fraccion,
                 num_espacios: emp.num_espacios,
                 precio: emp.precio,
-                descuento: emp.descuento,
-            }).then(res => {
+                descuento: emp.descuento
+            })
+            .then(res => {
                 resolve(res);
             })
             .catch(err => {
                 reject(err);
-            })
+            });
     });
 };
 
-exports.eliminarEmpresa = function (id) {
-    return new Promise(function (resolve, reject) {
-        models.empresa.destroy({
+exports.eliminarEmpresa = function(id) {
+    return new Promise(function(resolve, reject) {
+        models.empresa
+            .destroy({
                 where: {
                     id
-                }
-            }).then(res => {
+                },
+                include: [models.servicios_adicionales, models.espacios] // esta línea te permite incluir relaciones de la tabla
+            })
+            .then(res => {
                 resolve(res);
             })
             .catch(err => {
                 reject(err);
-            })
+            });
     });
 };
 
-exports.obtenerEmpresas = function () {
-    return new Promise(function (resolve, reject) {
-        models.empresa.findAll({
-                include: [models.servicios_adicionales] // esta línea te permite incluir relaciones de la tabla
-            }).then(res => {
+exports.obtenerEmpresas = function() {
+    return new Promise(function(resolve, reject) {
+        models.empresa
+            .findAll({
+                include: [models.servicios_adicionales, models.espacios] // esta línea te permite incluir relaciones de la tabla
+            })
+            .then(res => {
                 resolve(res);
             })
             .catch(err => {
                 reject(err);
-            })
+            });
     });
 };
 
-exports.obtenerEmpresa = function (id) {
-    return new Promise(function (resolve, reject) {
-        models.empresa.findAll({
+exports.obtenerEmpresa = function(id) {
+    return new Promise(function(resolve, reject) {
+        models.empresa
+            .findAll({
                 where: {
                     id
-                }
-            }).then(res => {
+                },
+                include: [models.servicios_adicionales, models.espacios] // esta línea te permite incluir relaciones de la tabla
+            })
+            .then(res => {
                 resolve(res);
             })
             .catch(err => {
                 reject(err);
-            })
+            });
     });
 };
 
-exports.actualizarEmpresa = function (id, obj) {
-    return new Promise(function (resolve, reject) {
-        models.empresa.update({
+exports.actualizarEmpresa = function(id, obj) {
+    return new Promise(function(resolve, reject) {
+        models.empresa
+            .update({
                 nombre: obj.nombre,
                 direccion: obj.direccion,
                 latitud: obj.latitud,
@@ -73,16 +84,17 @@ exports.actualizarEmpresa = function (id, obj) {
                 fraccion: obj.fraccion,
                 num_espacios: obj.num_espacios,
                 precio: obj.precio,
-                descuento: obj.descuento,
+                descuento: obj.descuento
             }, {
                 where: {
                     id
                 }
-            }).then(res => {
+            })
+            .then(res => {
                 resolve(res);
             })
             .catch(err => {
                 reject(err);
-            })
+            });
     });
 };

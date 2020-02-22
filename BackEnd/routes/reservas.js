@@ -5,7 +5,7 @@ var reservaDomain = require('../domain/reservas');
 /**
  * Obtener todas las reservas
  */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     reservaDomain.obtenerReservas().then(reservas => {
             res.send(reservas)
         })
@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
 /**
  * Obtener reserva
  */
-router.get('/:reserva_id', function (req, res) {
+router.get('/:reserva_id', function(req, res) {
     var id = req.params.reserva_id;
     reservaDomain.obtenerReserva(id).then(reserva => {
             res.send(reserva)
@@ -28,7 +28,7 @@ router.get('/:reserva_id', function (req, res) {
 /**
  * Agregar reserva
  */
-router.post('/crear', function (req, res) {
+router.post('/crear', function(req, res) {
     var reserva = req.body;
     reservaDomain.agregarReserva(reserva).then(() => {
             res.send({
@@ -42,7 +42,7 @@ router.post('/crear', function (req, res) {
 /**
  * Eliminar reserva
  */
-router.get('/:reserva_id/eliminar', function (req, res) {
+router.delete('/:reserva_id/eliminar', function(req, res) {
     var id = req.params.reserva_id;
     reservaDomain.eliminarReserva(id).then(() => {
             res.send({
@@ -57,7 +57,7 @@ router.get('/:reserva_id/eliminar', function (req, res) {
 /**
  * Actualizar reserva
  */
-router.put('/:reserva_id/actualizar', function (req, res) {
+router.put('/:reserva_id/actualizar', function(req, res) {
     var obj = req.body;
     var id = req.params.reserva_id;
 

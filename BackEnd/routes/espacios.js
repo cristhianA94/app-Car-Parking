@@ -6,7 +6,7 @@ var espacioDomain = require('../domain/espacios');
 /**
  * Obtener todas las espacios
  */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     espacioDomain.obtenerespacios().then(espacios => {
             res.send(espacios)
         })
@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 /**
  * Obtener espacio
  */
-router.get('/:espacio_id', function (req, res) {
+router.get('/:espacio_id', function(req, res) {
     var id = req.params.espacio_id;
     espacioDomain.obtenerEspacio(id).then(espacio => {
             res.send(espacio)
@@ -29,7 +29,7 @@ router.get('/:espacio_id', function (req, res) {
 /**
  * Agregar espacio
  */
-router.post('/crear', function (req, res) {
+router.post('/crear', function(req, res) {
     var espacio = req.body;
     espacioDomain.agregarEspacio(espacio).then(() => {
             res.send({
@@ -43,7 +43,7 @@ router.post('/crear', function (req, res) {
 /**
  * Eliminar espacio
  */
-router.get('/:espacio_id/eliminar', function (req, res) {
+router.delete('/:espacio_id/eliminar', function(req, res) {
     var id = req.params.espacio_id;
     espacioDomain.eliminarEspacio(id).then(() => {
             res.send({
@@ -58,7 +58,7 @@ router.get('/:espacio_id/eliminar', function (req, res) {
 /**
  * Actualizar espacio
  */
-router.put('/:espacio_id/actualizar', function (req, res) {
+router.put('/:espacio_id/actualizar', function(req, res) {
     var obj = req.body;
     var id = req.params.espacio_id;
 
