@@ -1,12 +1,14 @@
-# Parqueadero backend
+# Parqueadero Backend
 
 ## Express.js + Mysql + Sequelize
 
-## Backend basado en clean architecture
+## Backend basado en Clean architecture
+
+![Clean_Architecture](https://user-images.githubusercontent.com/24251638/75992239-aea77600-5ec5-11ea-8581-59282af95027.jpg)
 
 Configuraciones de la bd se encuentra en config/config.js
 
-### Endpoints
+## Endpoints
 
 * Obtener todos: {modelo}/
 * Obtener uno: {modelo}/id
@@ -14,6 +16,6 @@ Configuraciones de la bd se encuentra en config/config.js
 * Eliminar: {modelo}/id/eliminar
 * Actualizar: {modelo}/id/actualizar
 
-![BD entidad-relacion](https://github.com/pedrojsalinas/parqueadero-backend/blob/master/bd_relacion.png)
+## File Structure
 
-Basada en https://solidgeargroup.com/clean-architecture-en-nodejs/?lang=es
+Basado en [GitHub Node Clean Architecture](https://github.com/jbuget/nodejs-clean-architecture-app)

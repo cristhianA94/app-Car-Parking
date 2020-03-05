@@ -32,7 +32,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
   ]
 })
 export class RegisterComponent implements OnInit {
-
+  account_validation_messages: any;
   constructor(
     private formbuild: FormBuilder,
   ) { }
@@ -41,20 +41,21 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    // Mensajes de validacion de inputs en tiempo real.
+    this.account_validation_messages = {
+      correo: [
+        { type: 'required', message: 'El email es requerido' },
+        { type: 'pattern', message: 'Ingrese un email válido' }
+      ],
+      clave: [
+        { type: 'required', message: 'La contraseña es requerida' },
+        { type: 'minlength', message: 'Password must be at least 5 characters long' },
+        { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+      ]
+    }
   }
 
-  // Mensajes de validacion de inputs en tiempo real.
-  account_validation_messages = {
-    'correo': [
-      { type: 'required', message: 'El email es requerido' },
-      { type: 'pattern', message: 'Ingrese un email válido' }
-    ],
-    'clave': [
-      { type: 'required', message: 'La contraseña es requerida' },
-      { type: 'minlength', message: 'Password must be at least 5 characters long' },
-      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
-    ]
-  }
+
 
   /* Validador de formulario */
   buildForm(): void {
@@ -71,8 +72,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-   /* Registro usuario */
-   registro() {
+  /* Registro usuario */
+  registro() {
     //this.authService.SignUp(this.registroForm.value);
   }
 

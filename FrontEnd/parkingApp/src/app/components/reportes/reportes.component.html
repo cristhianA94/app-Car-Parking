@@ -1,0 +1,64 @@
+<div class="container mt-4">
+    <div class="col-md-12 text-center">
+        <h2>Reporte Tarjetas</h2>
+    </div>
+    <div class="row col-md-1 align-content-center">
+        <mat-form-field appearance="outline" fxFlex>
+            <mat-label>ID:</mat-label>
+            <mat-icon matSuffix class="secondary-text">credit_card</mat-icon>
+            <mat-hint align="start"><strong>Ingrese el ID de la tarjeta </strong> </mat-hint>
+            <input name="tarjeta" #tarjetaId matInput required>
+        </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="mostrarVista(tarjetaId.value)">Buscar</button>
+
+    <ng-container *ngIf="mostrar">
+
+        <div class="row">
+            <div class="col-4 mt-3" fxLayout="row" fxLayoutAlign="stretch">
+                <mat-card class="w-100 ">
+                    <mat-card-header>
+                        <mat-card-title>{{tarjeta.id}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <mat-list>
+                            <mat-list-item>
+                                <h4 mat-line>Estado: {{tarjeta.estado}}</h4>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                            <mat-list-item>
+                                <h4 mat-line>Saldo: {{tarjeta.saldo}}</h4>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        </mat-list>
+
+                    </mat-card-content>
+                    <mat-card-actions align="right">
+                        <button mat-stroked-button color="accent" (click)="actualizarTarjeta(tarjeta)">Reportar tarjeta</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-template #elseTemplate>
+        <button mat-icon-button color="primary" (click)="mostrar = false">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+        <h2 class="text-center my-2">ID: {{tarjeta.id}}</h2>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tarjeta of tarjeta" [ngClass]="{'table-danger': tarjeta.estado == 0, 'table-success': tarjeta.estado == 1}">
+                    <td>{{tarjeta.estado}}</td>
+                    <td>{{tarjeta.saldo}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </ng-template>
+</div>
