@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var reservaDomain = require('../../interface_adapters/controllers/reservas');
+var reservaController = require('../../interface_adapters/controllers/reservasDAOImpl');
 
 /**
  * Obtener todas las reservas
  */
-router.get('/', function (req, res, next) {
-    reservaDomain.obtenerReservas().then(reservas => {
+router.get('/', function(req, res, next) {
+    reservaController.obtenerReservas().then(reservas => {
             res.send(reservas)
         })
         .catch(err => {
@@ -16,9 +16,9 @@ router.get('/', function (req, res, next) {
 /**
  * Obtener reserva
  */
-router.get('/:reserva_id', function (req, res) {
+router.get('/:reserva_id', function(req, res) {
     var id = req.params.reserva_id;
-    reservaDomain.obtenerReserva(id).then(reserva => {
+    reservaController.obtenerReserva(id).then(reserva => {
             res.send(reserva)
         })
         .catch(err => {
@@ -28,9 +28,9 @@ router.get('/:reserva_id', function (req, res) {
 /**
  * Agregar reserva
  */
-router.post('/crear', function (req, res) {
+router.post('/crear', function(req, res) {
     var reserva = req.body;
-    reservaDomain.agregarReserva(reserva).then(() => {
+    reservaController.agregarReserva(reserva).then(() => {
             res.send({
                 mensaje: 'Creado correctamente.'
             })
@@ -42,9 +42,9 @@ router.post('/crear', function (req, res) {
 /**
  * Eliminar reserva
  */
-router.get('/:reserva_id/eliminar', function (req, res) {
+router.get('/:reserva_id/eliminar', function(req, res) {
     var id = req.params.reserva_id;
-    reservaDomain.eliminarReserva(id).then(() => {
+    reservaController.eliminarReserva(id).then(() => {
             res.send({
                 mensaje: 'Eliminado correctamente.'
             })
@@ -57,11 +57,11 @@ router.get('/:reserva_id/eliminar', function (req, res) {
 /**
  * Actualizar reserva
  */
-router.put('/:reserva_id/actualizar', function (req, res) {
+router.put('/:reserva_id/actualizar', function(req, res) {
     var obj = req.body;
     var id = req.params.reserva_id;
 
-    reservaDomain.actualizarReserva(id, obj).then(() => {
+    reservaController.actualizarReserva(id, obj).then(() => {
             res.send({
                 mensaje: 'Actualizado correctamente.'
             })

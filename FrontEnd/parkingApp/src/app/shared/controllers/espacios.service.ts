@@ -36,11 +36,16 @@ export class EspaciosService {
     return this.http.get(this.url + 'espacios', { headers });
   }
 
-  actualizarEspacio(espacios: Espacios): Observable<any> {
-    const params = JSON.stringify(espacios);
+  actualizarEspacio(espacioId, estado) {
+    const obj = {
+      id : espacioId,
+      estado: estado
+    }
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.put(this.url + `espacios/${espacios.id}`, params, { headers });
+    this.http.put(this.url + `espacios/${espacioId}/actualizar`, obj, { headers }).subscribe(data=>{
+      console.log("cambio estado");
+    })
   }
 
   eliminarEspacio(idEspacio: number) {

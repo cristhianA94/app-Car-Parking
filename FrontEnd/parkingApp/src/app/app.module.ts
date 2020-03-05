@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Material
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -22,18 +23,22 @@ import { RegisterComponent } from './components/register/register.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { EmpresasComponent } from './components/empresas/empresas.component';
 import { EmpresaEspaciosComponent } from './components/empresas/empresa-espacios/empresa-espacios.component';
+import { EmpresasListComponent } from './components/empresas/empresas-list/empresas-list.component';
+import { EmpresaFormComponent } from './components/empresas/empresa-form/empresa-form.component';
+import { ReservasComponent } from './components/reservas/reservas.component';
+import { ReservaFormComponent } from './components/reservas/reserva-form/reserva-form.component';
+import { ReservasListComponent } from './components/reservas/reservas-list/reservas-list.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+
 
 // Services
 import { EmpresaService } from './shared/controllers/empresa.service';
-import { TarjetasService } from './shared/controllers/tarjetas.service';
+import { TarjetasService } from './shared/controllers/tarjetas/tarjetas.service';
 import { UsuariosService } from './shared/controllers/usuarios.service';
 import { Servicios_AdicionalesService } from './shared/controllers/servicios_adicionales.service';
 import { PagosService } from './shared/controllers/pagos.service';
-import { ReservasService } from './shared/controllers/reservas.service';
 import { EspaciosService } from './shared/controllers/espacios.service';
-import { EmpresasListComponent } from './components/empresas/empresas-list/empresas-list.component';
-import { EmpresaFormComponent } from './components/empresas/empresa-form/empresa-form.component';
-
+import { ReservasService } from './shared/controllers/reservas/reservas.service';
 
 
 @NgModule({
@@ -48,16 +53,22 @@ import { EmpresaFormComponent } from './components/empresas/empresa-form/empresa
     EmpresasComponent,
     EmpresasListComponent,
     EmpresaFormComponent,
-    EmpresaEspaciosComponent
+    EmpresaEspaciosComponent,
+    ReservasComponent,
+    ReservasListComponent,
+    ReservaFormComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxMaterialTimepickerModule,
     MatPasswordStrengthModule.forRoot(),
   ],
   providers: [
@@ -67,10 +78,11 @@ import { EmpresaFormComponent } from './components/empresas/empresa-form/empresa
     PagosService,
     Servicios_AdicionalesService,
     UsuariosService,
-    TarjetasService
+    TarjetasService,
   ],
   entryComponents: [
-    EmpresaFormComponent
+    EmpresaFormComponent,
+    ReservaFormComponent
   ],
   bootstrap: [AppComponent]
 })

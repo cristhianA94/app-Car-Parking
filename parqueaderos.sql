@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 16-02-2020 a las 07:33:17
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 5.6.37
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 05-03-2020 a las 20:40:16
+-- Versión del servidor: 10.1.39-MariaDB
+-- Versión de PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,7 +35,7 @@ CREATE TABLE `empresas` (
   `latitud` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `longitud` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `num_espacios` int(50) NOT NULL,
-  `fraccion` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `fraccion` double NOT NULL,
   `precio` double NOT NULL,
   `descuento` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -45,14 +45,8 @@ CREATE TABLE `empresas` (
 --
 
 INSERT INTO `empresas` (`id`, `nombre`, `direccion`, `latitud`, `longitud`, `num_espacios`, `fraccion`, `precio`, `descuento`) VALUES
-(1, 'Parking Mercadillo', 'Mercadillo', '-4.017184', '-79.202588', 20, 'Por hora', 0.5, 2.5),
-(2, 'ParkeaT', 'Sucre', '-4.008707', '-79.202331', 12, 'Por cuarto de hora', 0.25, 3.5),
-(6, 'ID 6', 'test', '123', '123123', 0, 'asdas', 22, 1),
-(7, 'test', 'as', 'NaN', 'NaN', 2, 'as', 20, 12),
-(8, 'test', 'as', 'NaN', 'NaN', 2, 'as', 20, 12),
-(10, 'Test api', 'asdas', '1212', 'NaN', 12, 'Das', 12, 1212),
-(12, 'Test api', 'asdas', '1212', 'NaN', 12, 'Das', 12, 1212),
-(13, 'API ', 'asdas', '1212', 'NaN', 12, 'Das', 12, 1212);
+(1, 'Parking Mercadillo', 'Mercadillo', '-4.017184', '-79.202588', 20, 0, 1.6, 1),
+(2, 'ParkeaT', 'Sucre', '-4.008707', '-79.202331', 12, 0, 0.25, 3.5);
 
 -- --------------------------------------------------------
 
@@ -72,7 +66,15 @@ CREATE TABLE `espacios` (
 --
 
 INSERT INTO `espacios` (`id`, `empresaId`, `estado`, `cubierto`) VALUES
-(1, 2, 10, 2);
+(1, 1, 1, 1),
+(4, 1, 0, 0),
+(5, 1, 1, 0),
+(6, 1, 1, 1),
+(7, 1, 0, 1),
+(9, 2, 1, 1),
+(10, 2, 0, 1),
+(11, 2, 0, 0),
+(12, 2, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -92,9 +94,9 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`id`, `valor`, `empresaId`, `tarjetaId`) VALUES
-(1, 22, 2, 1),
-(9, 666, 2, 2),
-(11, 26, 2, 2);
+(1, 2.5, 1, 8),
+(2, 4, 1, 9),
+(3, 1.5, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -105,10 +107,21 @@ INSERT INTO `pagos` (`id`, `valor`, `empresaId`, `tarjetaId`) VALUES
 CREATE TABLE `reservas` (
   `id` int(11) NOT NULL,
   `tarjetaId` int(11) NOT NULL,
-  `horaInicio` date NOT NULL,
-  `horaSalida` date NOT NULL,
-  `empresaId` int(11) NOT NULL
+  `horaInicio` varchar(15) NOT NULL,
+  `horaSalida` varchar(15) NOT NULL,
+  `espacioId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `reservas`
+--
+
+INSERT INTO `reservas` (`id`, `tarjetaId`, `horaInicio`, `horaSalida`, `espacioId`) VALUES
+(27, 6, '08:12:00', '04:06:00', 6),
+(29, 7, '12:00 AM', '5:00 AM', 10),
+(30, 8, '12:00 AM', '5:00 AM', 11),
+(31, 7, '2:00 AM', '12:00 AM', 4),
+(32, 7, '12:13 AM', '6:32 AM', 4);
 
 -- --------------------------------------------------------
 
@@ -130,7 +143,9 @@ CREATE TABLE `servicios_adicionales` (
 --
 
 INSERT INTO `servicios_adicionales` (`id`, `nombre`, `cantidad`, `precio`, `descuento`, `empresaId`) VALUES
-(2, 'Limpieza test', 1, 100, 10, 6);
+(5, 'Lavado', 1, 5, 3, 1),
+(6, 'Fotocopiadora', 1, 0.05, 0, 1),
+(7, 'Cafe', 1, 0.5, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -149,8 +164,10 @@ CREATE TABLE `tarjetas` (
 --
 
 INSERT INTO `tarjetas` (`id`, `saldo`, `estado`) VALUES
-(1, 10000, 1),
-(2, 500, 1);
+(6, 30, 0),
+(7, 60, 0),
+(8, 0, 0),
+(9, 100, 1);
 
 -- --------------------------------------------------------
 
@@ -169,8 +186,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `ip`, `tarjetaId`) VALUES
-(1, '126ww66', 1),
-(3, 'asdasd', 1);
+(7, '182.56.45.62', 6),
+(9, '196.32.100.2', 7),
+(10, '80.54.66.102', 8),
+(11, '165.54.20.3', 9);
 
 --
 -- Índices para tablas volcadas
@@ -202,8 +221,8 @@ ALTER TABLE `pagos`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `empresaId` (`empresaId`),
-  ADD KEY `tarjetaId` (`tarjetaId`);
+  ADD KEY `tarjetaId` (`tarjetaId`),
+  ADD KEY `reservas_ibfk_1` (`espacioId`);
 
 --
 -- Indices de la tabla `servicios_adicionales`
@@ -233,43 +252,43 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `espacios`
 --
 ALTER TABLE `espacios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios_adicionales`
 --
 ALTER TABLE `servicios_adicionales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `tarjetas`
 --
 ALTER TABLE `tarjetas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
@@ -292,7 +311,7 @@ ALTER TABLE `pagos`
 -- Filtros para la tabla `reservas`
 --
 ALTER TABLE `reservas`
-  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`empresaId`) REFERENCES `empresas` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reservas_ibfk_1` FOREIGN KEY (`espacioId`) REFERENCES `espacios` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `reservas_ibfk_2` FOREIGN KEY (`tarjetaId`) REFERENCES `tarjetas` (`id`) ON DELETE CASCADE;
 
 --

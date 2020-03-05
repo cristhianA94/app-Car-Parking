@@ -1,4 +1,3 @@
-
 'use strict';
 
 module.exports = class {
@@ -9,7 +8,6 @@ module.exports = class {
         latitud,
         longitud,
         fraccion,
-        direccion,
         num_espacios,
         precio,
         descuento
@@ -20,12 +18,8 @@ module.exports = class {
         this.latitud = latitud;
         this.longitud = longitud;
         this.fraccion = fraccion;
-        this.direccion = direccion;
         this.num_espacios = num_espacios;
         this.precio = precio;
         this.descuento = descuento;
     }
 };
-
-
-

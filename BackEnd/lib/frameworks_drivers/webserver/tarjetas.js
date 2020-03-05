@@ -1,13 +1,13 @@
 var express = require('express');
-var tarjetaDomain = require('../../interface_adapters/controllers/tarjetas');
+var tarjetaController = require('../../interface_adapters/controllers/tarjetasDAOImpl');
 
 var router = express.Router();
 
 /**
  * Obtener todas las tarjetas
  */
-router.get('/', function (req, res, next) {
-    tarjetaDomain.obtenerTarjetas().then(tarjetas => {
+router.get('/', function(req, res, next) {
+    tarjetaController.obtenerTarjetas().then(tarjetas => {
             res.send(tarjetas)
         })
         .catch(err => {
@@ -17,9 +17,9 @@ router.get('/', function (req, res, next) {
 /**
  * Obtener tarjeta
  */
-router.get('/:tarjeta_id', function (req, res) {
+router.get('/:tarjeta_id', function(req, res) {
     var id = req.params.tarjeta_id;
-    tarjetaDomain.obtenerTarjeta(id).then(tarjeta => {
+    tarjetaController.obtenerTarjeta(id).then(tarjeta => {
             res.send(tarjeta)
         })
         .catch(err => {
@@ -29,9 +29,9 @@ router.get('/:tarjeta_id', function (req, res) {
 /**
  * Agregar tarjeta
  */
-router.post('/crear', function (req, res) {
+router.post('/crear', function(req, res) {
     var tarjeta = req.body;
-    tarjetaDomain.agregarTarjeta(tarjeta).then(() => {
+    tarjetaController.agregarTarjeta(tarjeta).then(() => {
             res.send({
                 mensaje: 'Creado correctamente.'
             })
@@ -43,9 +43,9 @@ router.post('/crear', function (req, res) {
 /**
  * Eliminar tarjeta
  */
-router.get('/:tarjeta_id/eliminar', function (req, res) {
+router.get('/:tarjeta_id/eliminar', function(req, res) {
     var id = req.params.tarjeta_id;
-    tarjetaDomain.eliminarTarjeta(id).then(() => {
+    tarjetaController.eliminarTarjeta(id).then(() => {
             res.send({
                 mensaje: 'Eliminado correctamente.'
             })
@@ -57,11 +57,11 @@ router.get('/:tarjeta_id/eliminar', function (req, res) {
 /**
  * Actualizar tarjeta
  */
-router.put('/:tarjeta_id/actualizar', function (req, res) {
+router.put('/:tarjeta_id/actualizar', function(req, res) {
     var obj = req.body;
     var id = req.params.tarjeta_id;
 
-    tarjetaDomain.actualizarTarjeta(id, obj).then(() => {
+    tarjetaController.actualizarTarjeta(id, obj).then(() => {
             res.send({
                 mensaje: 'Actualizado correctamente.'
             })

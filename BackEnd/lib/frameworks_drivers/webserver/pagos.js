@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var pagoDomain = require('../../interface_adapters/controllers/pagos');
+var pagoDomain = require('../../interface_adapters/controllers/pagosDAOImpl');
 
 
 /**
  * Obtener todas las pagos
  */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     pagoDomain.obtenerPagos().then(pagos => {
             res.send(pagos)
         })
@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 /**
  * Obtener pago
  */
-router.get('/:pago_id', function (req, res) {
+router.get('/:pago_id', function(req, res) {
     var id = req.params.pago_id;
     pagoDomain.obtenerPago(id).then(pago => {
             res.send(pago)
@@ -29,7 +29,7 @@ router.get('/:pago_id', function (req, res) {
 /**
  * Agregar pago
  */
-router.post('/crear', function (req, res) {
+router.post('/crear', function(req, res) {
     var pago = req.body;
     pagoDomain.agregarPago(pago).then(() => {
             res.send({
@@ -43,7 +43,7 @@ router.post('/crear', function (req, res) {
 /**
  * Eliminar pago
  */
-router.get('/:pago_id/eliminar', function (req, res) {
+router.get('/:pago_id/eliminar', function(req, res) {
     var id = req.params.pago_id;
     pagoDomain.eliminarPago(id).then(() => {
             res.send({
@@ -58,7 +58,7 @@ router.get('/:pago_id/eliminar', function (req, res) {
 /**
  * Actualizar pago
  */
-router.put('/:pago_id/actualizar', function (req, res) {
+router.put('/:pago_id/actualizar', function(req, res) {
     var obj = req.body;
     var id = req.params.pago_id;
 
@@ -74,4 +74,3 @@ router.put('/:pago_id/actualizar', function (req, res) {
 
 
 module.exports = router;
-

@@ -1,11 +1,12 @@
 var express = require('express');
-var usuarioDomain = require('../../interface_adapters/controllers/usuarios');
+var usuarioDomain = require('../../interface_adapters/controllers/usuariosDAOImpl');
+
 var router = express.Router();
 
 /**
  * Obtener todas las usuarios
  */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     usuarioDomain.obtenerUsuarios().then(usuarios => {
             res.send(usuarios)
         })
@@ -16,7 +17,7 @@ router.get('/', function (req, res, next) {
 /**
  * Obtener usuario
  */
-router.get('/:usuario_id', function (req, res) {
+router.get('/:usuario_id', function(req, res) {
     var id = req.params.usuario_id;
     usuarioDomain.obtenerUsuario(id).then(usuario => {
             res.send(usuario)
@@ -28,7 +29,7 @@ router.get('/:usuario_id', function (req, res) {
 /**
  * Agregar usuario
  */
-router.post('/crear', function (req, res) {
+router.post('/crear', function(req, res) {
     var usuario = req.body;
     usuarioDomain.agregarUsuario(usuario).then(() => {
             res.send({
@@ -42,7 +43,7 @@ router.post('/crear', function (req, res) {
 /**
  * Eliminar usuario
  */
-router.get('/:usuario_id/eliminar', function (req, res) {
+router.get('/:usuario_id/eliminar', function(req, res) {
     var id = req.params.usuario_id;
     usuarioDomain.eliminarUsuario(id).then(() => {
             res.send({
@@ -57,7 +58,7 @@ router.get('/:usuario_id/eliminar', function (req, res) {
 /**
  * Actualizar usuario
  */
-router.put('/:usuario_id/actualizar', function (req, res) {
+router.put('/:usuario_id/actualizar', function(req, res) {
     var obj = req.body;
     var id = req.params.usuario_id;
 
